@@ -93,24 +93,25 @@ async function updateResultsFile() {
 }
 
 async function main() {
-	const currentBranch = execSync("git branch --show", {
-		encoding: "utf8",
-	}).trim();
-	console.log(`Current branch: ${currentBranch}`);
+	// const currentBranch = execSync("git branch --show", {
+	// 	encoding: "utf8",
+	// }).trim();
+	// console.log(`Current branch: ${currentBranch}`);
+	const currentBranch = "main";
 
-	execSync("git checkout test-pr", execOpts);
+	execSync("git checkout test-forked-pr", execOpts);
 
 	await updateResultsFile();
 
-	const updatedFiles = await updateActionDefs(currentBranch);
+	// const updatedFiles = await updateActionDefs(currentBranch);
 
 	[
 		`git add tests/results/test-results.json`,
-		...updatedFiles.map((filePath) => `git add ${filePath}`),
+		// ...updatedFiles.map((filePath) => `git add ${filePath}`),
 		`git status -s`,
-		`git commit -m "Trigger PR action run: ${currentBranch}"`,
+		`git commit -m "Trigger Forked PR action run: ${currentBranch}"`,
 		`git push`,
-		`git checkout ${currentBranch}`,
+		// `git checkout ${currentBranch}`,
 	].forEach((command) => execSync(command, execOpts));
 }
 
