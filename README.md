@@ -170,7 +170,7 @@ jobs:
     name: Second Bench Job
     runs-on: ubuntu-latest
     steps:
-			- uses: actions/checkout@v2
+      - uses: actions/checkout@v2
       - run: ./benchmark.sh
       - uses: actions/upload-artifact@v2
         with:
