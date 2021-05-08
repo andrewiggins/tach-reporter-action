@@ -65,7 +65,7 @@
     "escape-string-regexp": "^4.0.0",
     "node-html-parser": "^1.2.20",
     "pretty-bytes": "^5.3.0",
-    "ua-parser-js": "^0.7.21",
+    "ua-parser-js": "^0.7.24",
     "xstate": "^4.11.0"
   }
 }
