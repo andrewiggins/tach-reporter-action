@@ -17,11 +17,13 @@ jobs:
       - name: Log GitHub Context
         run: node -e 'var github = require("@actions/github"); var context = github.context; console.log("context.issue =", JSON.stringify(context.issue, null, 2)); console.log("context.repo =", JSON.stringify(context.repo, null, 2)); console.log("context = ", JSON.stringify(context, null, 2));'
       - run: npm run test:coverage
+        env:
+          TACH_REPORTER_SKIP_SNAPSHOT_TESTS: "true"
       - run: |
           # Could use this to simulate benchmark running for random number of seconds
           echo $((($RANDOM%(5000-1000))+1000))
       - name: Report Tachometer Result
-        uses: ./
+        uses: andrewiggins/tachometer-reporter-action@main
         with:
           path: tests/results/test-results.json
           pr-bench-name: local-framework
